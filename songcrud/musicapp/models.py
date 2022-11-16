@@ -14,14 +14,13 @@ class Artiste(models.Model):
           return self.first_name
 
 class Song(models.Model):
-        title = models.CharField(max_length=100)
-        date_released = models.DateField()
-        likes = models.PositiveIntegerField(default=0)
-        artiste_id = models.ForeignKey(Artiste, on_delete=models.CASCADE)
-
-        def __str__(self):
-             return self.title     
-            
+    title = models.CharField(max_length=100)
+    date_released = models.DateField()
+    likes = models.PositiveIntegerField(default=0)
+    artiste_id = models.ForeignKey(Artiste, related_name='artiste_id', on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.title                         
 class Lyric(models.Model):
     content = models.TextField()
     song_id = models.ForeignKey(Song, on_delete=models.CASCADE) 
